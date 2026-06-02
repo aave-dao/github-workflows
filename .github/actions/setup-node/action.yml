@@ -1,4 +1,4 @@
-## should eventually move to bgd-labs/github-workflows
+## should eventually move to aave-dao/github-workflows
 
 name: "Setup Node'ish environment"
 description: "Sets up Node/Bun and installs the dependencies"

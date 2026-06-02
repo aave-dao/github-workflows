@@ -1,13 +1,13 @@
-# BGD <> Github workflows
+# Aave <> Github workflows
 
-This repository contains a collection of workflows that are used across BGD repositories.
-The workflows can easily be used outside of BGD as well, as long as secrets are properly setup.
+This repository contains a collection of workflows that are used across Aave repositories.
+The workflows can easily be used outside of Aave as well, as long as secrets are properly setup.
 
 ## Setup Node/Bun
 
 Opinionated setup & install for node & bun.
 
-name: `bgd-labs/github-workflows/.github/actions/setup-node@main`
+name: `aave-dao/github-workflows/.github/actions/setup-node@main`
 
 - detects node-package-manager to be used (npm/pnpm/yarn) according to present lockfile
 - detects runtime-version to used
@@ -28,7 +28,7 @@ You can use the workflow via:
 ```yml
 jobs:
   test:
-    uses: bgd-labs/github-workflows/.github/workflows/foundry-test.yml@main
+    uses: aave-dao/github-workflows/.github/workflows/foundry-test.yml@main
 ```
 
 Per default the workflow will assume your `.env.example` contains variables that are sufficient to run your tests. For advanced usage you can specify custom `RPCs`.
@@ -36,7 +36,7 @@ Per default the workflow will assume your `.env.example` contains variables that
 ```yml
 jobs:
   test:
-    uses: bgd-labs/github-workflows/.github/workflows/foundry-test.yml@main
+    uses: aave-dao/github-workflows/.github/workflows/foundry-test.yml@main
     mode: ALL # or CHANGED
     # to inherit all secrets
     secrets: inherit
@@ -59,7 +59,7 @@ on:
 
 jobs:
   draft-release:
-    uses: bgd-labs/github-workflows/.github/workflows/draft-release.yml@main
+    uses: aave-dao/github-workflows/.github/workflows/draft-release.yml@main
 ```
 
 ## Release-node
@@ -76,7 +76,7 @@ The workflows will listen for the commit message created by `draft-release` and 
 `release-node` workflow:
 
 - creates a node release
-- the repository **MUST** specify a `ci:publish` step which facilitates [building and publishing](https://github.com/bgd-labs/aave-address-book/blob/main/package.json#L17)
+- the repository **MUST** specify a `ci:publish` step which facilitates [building and publishing](https://github.com/aave-dao/aave-address-book/blob/main/package.json#L17)
 
 ```yml
 on:
@@ -86,7 +86,7 @@ on:
 
 jobs:
   release-node:
-    uses: bgd-labs/github-workflows/.github/workflows/release-node.yml@main
+    uses: aave-dao/github-workflows/.github/workflows/release-node.yml@main
     secrets:
       NODE_AUTH_TOKEN: ${{ secrets.NODE_AUTH_TOKEN }}
 ```

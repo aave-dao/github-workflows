@@ -13,10 +13,10 @@ jobs:
 
       - name: setup config
         run: |
-          git config --global user.email "gitbot@bgdlabs.com"
+          git config --global user.email "gitbot@aave.com"
           git config --global user.name "Release bot :robot:"
 
-      - uses: bgd-labs/github-workflows/.github/actions/setup-node@main
+      - uses: aave-dao/github-workflows/.github/actions/setup-node@main
 
       - name: install
         run: npm i -g standard-version

@@ -14,7 +14,7 @@ runs:
         path: lcov
         check_artifacts: true
 
-    - uses: bgd-labs/action-foundry-lcov@main
+    - uses: aave-dao/action-foundry-lcov@main
       id: lcov
       with:
         # The path to the first contract to compare
