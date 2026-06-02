@@ -14,5 +14,3 @@ on:
 jobs:
   test:
     uses: ./.github/workflows/comment.yml
-    secrets:
-      READ_ONLY_PAT: ${{ secrets.READ_ONLY_PAT }}

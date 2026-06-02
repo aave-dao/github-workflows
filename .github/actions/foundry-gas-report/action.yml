@@ -4,7 +4,7 @@ description: Compares gas on default branch against the pr
 runs:
   using: "composite"
   steps:
-    - uses: bgd-labs/action-foundry-gas-diff@main
+    - uses: aave-dao/action-foundry-gas-diff@main
       id: gas
 
     - name: Prepare comment

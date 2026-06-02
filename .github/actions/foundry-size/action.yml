@@ -34,7 +34,7 @@ runs:
         path: /tmp/sizes.json
 
     - name: Compare reports
-      uses: bgd-labs/action-forge-sizes@main
+      uses: aave-dao/action-forge-sizes@main
       if: always() && github.event_name == 'pull_request'
       id: sizes
       with:
