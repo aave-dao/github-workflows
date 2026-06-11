@@ -9,7 +9,7 @@ inputs:
     options:
       - "nightly"
       - "stable"
-    default: "nightly"
+    default: "stable"
 
 runs:
   using: "composite"
