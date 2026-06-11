@@ -1,0 +1,14 @@
+.github/actions/foundry-setup/action.yml
+  h_739c25e72c37fb 12
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.6",
+  "base_commit_sha": "9767f64fa6b5596c79ea0ef4c4ad1ce1a03122fa",
+  "prompts": {},
+  "humans": {
+    "h_739c25e72c37fb": {
+      "author": "DhairyaSethi <55102840+DhairyaSethi@users.noreply.github.com>"
+    }
+  }
+}
