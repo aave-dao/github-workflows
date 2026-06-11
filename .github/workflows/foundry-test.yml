@@ -43,7 +43,7 @@ jobs:
           sudo swapon /swapfile
           sudo swapon --show
 
-      - uses: aave-dao/action-rpc-env@5191193b0de7443bda94b6f42092c83e32464adc
+      - uses: aave-dao/action-rpc-env@main
         with:
           ALCHEMY_API_KEY: ${{ secrets.ALCHEMY_API_KEY }}
           QUICKNODE_TOKEN: ${{ secrets.QUICKNODE_TOKEN }}
