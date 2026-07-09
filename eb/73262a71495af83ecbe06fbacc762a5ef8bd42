@@ -1,0 +1,14 @@
+.github/actions/setup-node/action.yml
+  h_739c25e72c37fb 57
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.10",
+  "base_commit_sha": "eb73262a71495af83ecbe06fbacc762a5ef8bd42",
+  "prompts": {},
+  "humans": {
+    "h_739c25e72c37fb": {
+      "author": "DhairyaSethi <55102840+DhairyaSethi@users.noreply.github.com>"
+    }
+  }
+}
