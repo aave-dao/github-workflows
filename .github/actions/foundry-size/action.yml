@@ -45,5 +45,7 @@ runs:
     - name: Prepare reports comment
       if: always() && github.event_name == 'pull_request'
       shell: bash
+      env:
+        REPORT: ${{ steps.sizes.outputs.report }}
       run: |
-        printf '%s' "${{ steps.sizes.outputs.report }}" > /tmp/content/forge-sizes.txt
+        printf '%s' "$REPORT" > /tmp/content/forge-sizes.txt
