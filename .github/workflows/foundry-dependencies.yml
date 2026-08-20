@@ -1,0 +1,145 @@
+name: Update Foundry dependencies
+
+on:
+  workflow_call:
+    inputs:
+      dependencies:
+        description: Dependencies to update, one path per line.
+        required: true
+        type: string
+    secrets:
+      token:
+        description: Optional GitHub App or PAT token that lets pull-request checks start without maintainer approval.
+        required: false
+    outputs:
+      updated:
+        description: Whether dependency changes were found.
+        value: ${{ jobs.update.outputs.updated }}
+      pullRequestUrl:
+        description: URL of the created or updated pull request.
+        value: ${{ jobs.update.outputs.pullRequestUrl }}
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: foundry-dependencies-${{ github.repository }}
+  cancel-in-progress: false
+
+jobs:
+  update:
+    name: Update dependencies
+    runs-on: ubuntu-latest
+    outputs:
+      updated: ${{ steps.changes.outputs.updated }}
+      pullRequestUrl: ${{ steps.pull-request.outputs.url }}
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.repository.default_branch }}
+          fetch-depth: 0
+          submodules: recursive
+          token: ${{ secrets.token || github.token }}
+
+      - name: Set up Foundry
+        uses: aave-dao/github-workflows/.github/actions/foundry-setup@main
+        with:
+          FOUNDRY_VERSION: stable
+
+      - name: Update dependencies
+        env:
+          DEPENDENCIES: ${{ inputs.dependencies }}
+        shell: bash
+        run: |
+          dependencies=()
+
+          while IFS= read -r dependency; do
+            dependency="${dependency%$'\r'}"
+            if [[ -n "$dependency" ]]; then
+              dependencies+=("$dependency")
+            fi
+          done <<< "$DEPENDENCIES"
+
+          if [[ ${#dependencies[@]} -eq 0 ]]; then
+            echo "At least one dependency is required."
+            exit 1
+          fi
+
+          forge update --recursive "${dependencies[@]}"
+
+      - name: Detect changes
+        id: changes
+        shell: bash
+        run: |
+          if [[ -n "$(git status --porcelain --untracked-files=all)" ]]; then
+            echo "updated=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "updated=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Commit and push changes
+        if: steps.changes.outputs.updated == 'true'
+        env:
+          UPDATE_BRANCH: chore/update-foundry-dependencies
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git switch --create "$UPDATE_BRANCH"
+          git add --all
+          git commit --message "chore: update Foundry dependencies"
+
+          if git ls-remote --exit-code --heads origin "refs/heads/$UPDATE_BRANCH"; then
+            git fetch origin "$UPDATE_BRANCH:refs/remotes/origin/$UPDATE_BRANCH"
+            if git diff --quiet "origin/$UPDATE_BRANCH" HEAD; then
+              echo "The update branch already contains these changes."
+              exit 0
+            fi
+          fi
+
+          git push --force-with-lease origin "HEAD:refs/heads/$UPDATE_BRANCH"
+
+      - name: Create or update pull request
+        if: steps.changes.outputs.updated == 'true'
+        id: pull-request
+        env:
+          GH_TOKEN: ${{ secrets.token || github.token }}
+          UPDATE_BRANCH: chore/update-foundry-dependencies
+          DEPENDENCIES: ${{ inputs.dependencies }}
+          BASE_BRANCH: ${{ github.event.repository.default_branch }}
+        shell: bash
+        run: |
+          body_file="$RUNNER_TEMP/foundry-dependencies-pr.md"
+          {
+            echo "This automated pull request updates Foundry dependencies with \`forge update\`."
+            echo
+            echo "The dependency gitlinks and \`foundry.lock\` are updated together."
+            if [[ -n "$DEPENDENCIES" ]]; then
+              echo
+              echo "Dependencies:"
+              while IFS= read -r dependency; do
+                dependency="${dependency%$'\r'}"
+                if [[ -n "$dependency" ]]; then
+                  echo "- \`$dependency\`"
+                fi
+              done <<< "$DEPENDENCIES"
+            fi
+          } > "$body_file"
+
+          pr_url=$(gh pr list \
+            --head "$UPDATE_BRANCH" \
+            --state open \
+            --json url \
+            --jq '.[0].url // empty')
+
+          if [[ -z "$pr_url" ]]; then
+            pr_url=$(gh pr create \
+              --base "$BASE_BRANCH" \
+              --head "$UPDATE_BRANCH" \
+              --title "chore: update Foundry dependencies" \
+              --body-file "$body_file")
+          fi
+
+          echo "url=$pr_url" >> "$GITHUB_OUTPUT"
