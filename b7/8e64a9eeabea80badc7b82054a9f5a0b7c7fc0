@@ -1,0 +1,30 @@
+.github/workflows/foundry-dependencies.yml
+  s_cc6ed07f5911f0::t_13b72804a9e620 96-99
+  s_cc6ed07f5911f0::t_3a892b15f02bd0 7-8,12,49,64-68,70,85,92,109,141
+  s_cc6ed07f5911f0::t_715e0d13fa3e90 10-11,13,44,108
+  s_cc6ed07f5911f0::t_74c05253752892 1-6,9,14-43,45-48,50-63,69,71-84,86-91,93-95,100-107,110-140,142-145
+README.md
+  s_cc6ed07f5911f0::t_3a892b15f02bd0 77,81
+  s_cc6ed07f5911f0::t_13b72804a9e620 83-84
+  s_cc6ed07f5911f0::t_957a62670b61e3 72
+  s_cc6ed07f5911f0::t_74c05253752892 48-59,61-71,75-76,78,82
+  s_cc6ed07f5911f0::t_715e0d13fa3e90 73-74,80
+  s_cc6ed07f5911f0::t_8dde38144a125a 60
+  s_cc6ed07f5911f0::t_e1ec3eafe55eba 79
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.22",
+  "base_commit_sha": "b78e64a9eeabea80badc7b82054a9f5a0b7c7fc0",
+  "prompts": {},
+  "sessions": {
+    "s_cc6ed07f5911f0": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a01e76-ab1d-7b62-adf9-c5945744f5a6",
+        "model": "gpt-5.6-sol"
+      },
+      "human_author": "AlbertoCentonze <11707683+AlbertoCentonze@users.noreply.github.com>"
+    }
+  }
+}
