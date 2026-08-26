@@ -1,0 +1,19 @@
+.github/actions/foundry-setup/action.yml
+  s_aa3710febd90c2::t_4f955877abf363 23
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.24",
+  "base_commit_sha": "66ed2c507ae249f660652f9de55b9afd2c169750",
+  "prompts": {},
+  "sessions": {
+    "s_aa3710febd90c2": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "2aaaa70d-a0dc-4b09-b14f-90ab010dbccf",
+        "model": "claude-fable-5"
+      },
+      "human_author": "DhairyaSethi <55102840+DhairyaSethi@users.noreply.github.com>"
+    }
+  }
+}
