@@ -50,7 +50,7 @@ runs:
           echo "NODE_VERSION_FILE=.nvmrc" >> $GITHUB_ENV
         fi
 
-    - uses: pnpm/action-setup@d648c2dd069001a242c621c8306af467f150e99d
+    - uses: pnpm/action-setup@0977fd99725f1db4007ccb2928dbb4e90d06cc86 # v6.0.10
       if: ${{ env.PACKAGE_MANAGER == 'pnpm' }}
 
     - name: Setup Node.js
@@ -94,7 +94,7 @@ runs:
 
     - name: Setup Bun
       if: ${{ env.PACKAGE_MANAGER == 'bun' }}
-      uses: oven-sh/setup-bun@4bc047ad259df6fc24a6c9b0f9a0cb08cf17fbe5 # pin@v2
+      uses: oven-sh/setup-bun@0c5077e51419868618aeaa5fe8019c62421857d6 # v2.2.0
       with:
         bun-version-file: ${{ env.BUN_VERSION_FILE }}
 
