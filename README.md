@@ -47,6 +47,43 @@ jobs:
       RPC_MAINNET: ${{ secrets.RPC_MAINNET }}
 ```
 
+## Foundry dependency updates
+
+`foundry-dependencies` is a Dependabot-like reusable workflow for Foundry dependencies. It runs `forge update`, so dependency gitlinks and `foundry.lock` stay synchronized, and opens or updates a pull request when revisions change.
+
+Add a caller workflow to the consuming repository:
+
+```yml
+name: Update Foundry dependencies
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 8 * * *"
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  update:
+    uses: aave-dao/github-workflows/.github/workflows/foundry-dependencies.yml@main
+    with:
+      dependencies: |
+        lib/aave-address-book
+    # Optional: use a GitHub App or PAT token to run PR CI without approval.
+    secrets:
+      token: ${{ secrets.FOUNDRY_DEPENDENCIES_TOKEN }}
+```
+
+`dependencies` is required. List multiple dependency paths on separate lines. Updates always run recursively with the latest stable Foundry release.
+
+When using the default `GITHUB_TOKEN`, the consuming repository must allow GitHub Actions to create pull requests under **Settings → Actions → General → Workflow permissions**.
+
+The default `GITHUB_TOKEN` is sufficient to create the branch and pull request. GitHub holds the resulting pull-request checks until a maintainer clicks **Approve workflows and run**. Pass a GitHub App token or fine-grained PAT with repository contents and pull-request write access when those checks should start automatically.
+
+If Dependabot is already configured for Git submodules, disable that update entry or ignore the dependencies managed by this workflow to avoid duplicate pull requests.
+
 ## Draft release
 
 `draft-release` workflow:
