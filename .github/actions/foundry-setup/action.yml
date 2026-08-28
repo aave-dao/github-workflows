@@ -5,10 +5,7 @@ inputs:
     description: "If tests should use zksync profile"
     default: "false"
   FOUNDRY_VERSION:
-    description: "The version of Foundry to install"
-    options:
-      - "nightly"
-      - "stable"
+    description: "The Foundry version to install: stable, nightly, or a SemVer version such as v1.8.0 or v1.7.0"
     default: "stable"
 
 runs:

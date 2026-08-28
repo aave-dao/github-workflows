@@ -6,6 +6,10 @@ on:
       mode:
         default: "ALL"
         type: "string"
+      foundryVersion:
+        description: "The Foundry version to install: stable, nightly, or a SemVer version such as v1.8.0 or v1.7.0"
+        default: "stable"
+        type: "string"
       compareGas:
         default: true
         type: boolean
@@ -53,6 +57,8 @@ jobs:
 
       - name: Run Foundry setup
         uses: aave-dao/github-workflows/.github/actions/foundry-setup@main
+        with:
+          FOUNDRY_VERSION: ${{ inputs.foundryVersion }}
 
       ### Ensure contract size is not exceeded ###
       - name: Run Forge size

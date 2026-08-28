@@ -37,7 +37,9 @@ Per default the workflow will assume your `.env.example` contains variables that
 jobs:
   test:
     uses: aave-dao/github-workflows/.github/workflows/foundry-test.yml@main
-    mode: ALL # or CHANGED
+    with:
+      mode: ALL # or CHANGED
+      foundryVersion: stable # or nightly/a SemVer version such as v1.8.0 or v1.7.0
     # to inherit all secrets
     secrets: inherit
     # to inherit specific secrets
