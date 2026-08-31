@@ -1,0 +1,45 @@
+.github/actions/size-limit/action.yml
+  s_52f3145304d99b::t_1e6611b169873e 1-39
+.github/actions/size-limit/LICENSE
+  s_52f3145304d99b::t_1e6611b169873e 1-15
+.github/actions/size-limit/jest.config.js
+  s_52f3145304d99b::t_1e6611b169873e 1-13
+.github/actions/size-limit/src/SizeLimit.spec.ts
+  s_52f3145304d99b::t_1e6611b169873e 1-175
+.github/actions/size-limit/package.json
+  s_52f3145304d99b::t_1e6611b169873e 1-44
+.github/actions/size-limit/src/Term.ts
+  s_52f3145304d99b::t_1e6611b169873e 1-94
+.github/actions/size-limit/src/main.ts
+  s_52f3145304d99b::t_1e6611b169873e 1-136
+.github/actions/size-limit/.gitignore
+  s_52f3145304d99b::t_06c9418c747169 1-4
+.github/actions/size-limit/README.md
+  s_52f3145304d99b::t_06c9418c747169 1-14
+.github/actions/size-limit/src/SizeLimit.ts
+  s_52f3145304d99b::t_1e6611b169873e 1-175
+.github/actions/size-limit/tsconfig.json
+  s_52f3145304d99b::t_1e6611b169873e 1-13
+.github/actions/size-limit/.gitattributes
+  s_52f3145304d99b::t_d7839ead0658e6 1
+.github/actions/size-limit/dist/index.js
+  s_52f3145304d99b::t_7112dac84eda40 1-32767
+.github/actions/size-limit/package-lock.json
+  s_52f3145304d99b::t_92f049c0f2f597 1-13378
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.0",
+  "base_commit_sha": "1c90ddbb97f3dbad62b97b656e9f7b68b2da8747",
+  "prompts": {},
+  "sessions": {
+    "s_52f3145304d99b": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a0589d-7f21-75c1-b97e-ad5a9e700a66",
+        "model": "gpt-5.6-sol"
+      },
+      "human_author": "AlbertoCentonze <11707683+AlbertoCentonze@users.noreply.github.com>"
+    }
+  }
+}
