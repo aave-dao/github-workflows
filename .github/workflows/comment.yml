@@ -36,6 +36,7 @@ jobs:
           echo "matrix=$(ls /tmp/content/**/*.txt | jq -R -s -c 'split("\n")[:-1]')" >> $GITHUB_OUTPUT
   comment:
     needs: artifacts
+    if: ${{ needs.artifacts.outputs.matrix != '[]' }}
     name: Comment Bot
     runs-on: ubuntu-latest
     strategy:
