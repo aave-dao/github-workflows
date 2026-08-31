@@ -1,0 +1,53 @@
+.github/workflows/test-node.yml
+  s_a671c050c0fdeb::t_7145b46981f53a 46
+.github/workflows/_test-workflow.yml
+  s_a671c050c0fdeb::t_7145b46981f53a 19
+.github/actions/foundry-size/action.yml
+  s_a671c050c0fdeb::t_b81d1be16aabbc 9,30
+.github/actions/foundry-test/action.yml
+  s_a671c050c0fdeb::t_b81d1be16aabbc 46
+.github/actions/comment-artifact/action.yml
+  s_a671c050c0fdeb::t_dbf9f93416e104 20
+.github/workflows/release-node-alpha.yml
+  s_a671c050c0fdeb::t_7145b46981f53a 16
+.github/workflows/foundry-test.yml
+  s_a671c050c0fdeb::t_7145b46981f53a 32
+.github/workflows/foundry-test-zk.yml
+  s_a671c050c0fdeb::t_4c6b98ccea9f4c 28
+  s_a671c050c0fdeb::t_7145b46981f53a 23
+.github/workflows/foundry-lint.yml
+  s_a671c050c0fdeb::t_7145b46981f53a 11
+.github/workflows/foundry-lint-prettier.yml
+  s_a671c050c0fdeb::t_7145b46981f53a 11
+.github/workflows/comment.yml
+  s_a671c050c0fdeb::t_a812a11e840a8a 79
+  s_a671c050c0fdeb::t_50517866d6e474 69
+  s_a671c050c0fdeb::t_b81d1be16aabbc 20,46
+  s_a671c050c0fdeb::t_afe7c5ac4ce3df 60
+.github/workflows/release-node.yml
+  s_a671c050c0fdeb::t_7145b46981f53a 19
+.github/actions/foundry-lcov-report/action.yml
+  s_a671c050c0fdeb::t_b81d1be16aabbc 9,37
+.github/workflows/draft-release.yml
+  s_a671c050c0fdeb::t_e0758c96021576 34
+  s_a671c050c0fdeb::t_7145b46981f53a 10
+.github/actions/setup-node/action.yml
+  s_a671c050c0fdeb::t_907a055a3aef08 97
+  s_a671c050c0fdeb::t_cbb9dbf2065419 53
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.24",
+  "base_commit_sha": "25b434646fae5f0538e7199d7f414574708c479b",
+  "prompts": {},
+  "sessions": {
+    "s_a671c050c0fdeb": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "1e33cbdc-4139-4a2b-aa53-057b78f68301",
+        "model": "claude-fable-5"
+      },
+      "human_author": "DhairyaSethi <55102840+DhairyaSethi@users.noreply.github.com>"
+    }
+  }
+}
