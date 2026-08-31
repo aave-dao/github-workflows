@@ -56,6 +56,3 @@ jobs:
         run: |
           echo "tests failed"
           exit 1
-  release:
-    needs: [test]
-    uses: ./.github/workflows/release.yml
