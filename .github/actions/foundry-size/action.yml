@@ -6,7 +6,7 @@ runs:
   steps:
     - name: Download previous sizes report
       if: ${{ github.event_name == 'pull_request' }}
-      uses: dawidd6/action-download-artifact@72aaadce3bc708349fc665eee3785cbb1b6e51d0 # v3.1.1
+      uses: dawidd6/action-download-artifact@d63b86af1b34672e53c440b1b83979861906bad7 # v24
       with:
         branch: ${{ github.base_ref }}
         name: sizes-report
@@ -27,7 +27,7 @@ runs:
         fi
 
     - name: Upload sizes report
-      uses: actions/upload-artifact@65c4c4a1ddee5b72f698fdd19549f0f0fb45cf08 # v4
+      uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6
       if: always()
       with:
         name: sizes-report

@@ -17,7 +17,7 @@ runs:
         mkdir -p ./pr
         echo $PR_NUMBER > /tmp/content/pr_number.txt
 
-    - uses: actions/upload-artifact@v4
+    - uses: actions/upload-artifact@v6
       with:
         name: content${{ inputs.nameSuffix }}
         path: /tmp/content
