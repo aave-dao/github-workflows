@@ -1,0 +1,20 @@
+.github/actions/foundry-test/action.yml
+  s_52f3145304d99b::t_31fc38fa92c229 37,39,81,83
+  s_52f3145304d99b::t_d0d51f94422f40 38,82
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.0",
+  "base_commit_sha": "afc0289d4095d5aafc6972896d42d533ccee60a3",
+  "prompts": {},
+  "sessions": {
+    "s_52f3145304d99b": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a0589d-7f21-75c1-b97e-ad5a9e700a66",
+        "model": "gpt-5.6-sol"
+      },
+      "human_author": null
+    }
+  }
+}
