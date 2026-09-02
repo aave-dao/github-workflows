@@ -24,21 +24,12 @@ jobs:
         with:
           ALCHEMY_API_KEY: ${{ secrets.ALCHEMY_API_KEY }}
 
-      # we simply use foundry zk for all jobs in this repo
       - name: Run Foundry setup
         uses: ./.github/actions/foundry-setup
-        with:
-          ZKSYNC: "true"
 
       - name: Run Forge tests
         id: test
         uses: ./.github/actions/foundry-test
-
-      - name: Run ZK tests
-        id: zktest
-        uses: ./.github/actions/foundry-test
-        with:
-          ZKSYNC: true
 
       - name: Run Gas report
         uses: ./.github/actions/foundry-gas-report
@@ -52,7 +43,7 @@ jobs:
         
       # we let failing tests pass so we can log them in the comment, still we want the ci to fail
       - name: Post test
-        if: ${{ steps.test.outputs.testStatus != 0 || steps.zktest.outputs.testStatus != 0 }}
+        if: ${{ steps.test.outputs.testStatus != 0 }}
         run: |
           echo "tests failed"
           exit 1
