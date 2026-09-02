@@ -34,7 +34,9 @@ runs:
         ${{ inputs.ZKSYNC == 'true' && 'FOUNDRY_PROFILE=zksync' || '' }} forge test ${{ inputs.zksync == 'true' && '--zksync' || ''}} -vv | sed -r 's/\x1B\[([0-9]{1,3}(;[0-9]{1,2})?)?[mGK]//g' | tee /tmp/foundry_test
         status=${PIPESTATUS[0]}
         echo "testStatus=$status" >> $GITHUB_OUTPUT
-        printf '<details><summary>%s <strong>Test Results ${{ inputs.zksync == 'true' && 'zksync' || '' }}</strong></summary>\n\n```shell\n%s\n```\n</details>' "$([ $status -eq 0 ] && echo ":rainbow:" || echo ":finnadie::x:")" "$(cat /tmp/foundry_test)" >> /tmp/content/test.txt
+        if [ $status -ne 0 ]; then
+          printf '<details><summary>:finnadie::x: <strong>Test Results ${{ inputs.zksync == 'true' && 'zksync' || '' }}</strong></summary>\n\n```shell\n%s\n```\n</details>' "$(cat /tmp/foundry_test)" >> /tmp/content/test.txt
+        fi
       env:
         FORGE_SNAPSHOT_CHECK: ${{ inputs.FORGE_SNAPSHOT_CHECK }}
         FOUNDRY_PROFILE: ${{ inputs.FOUNDRY_PROFILE }}
@@ -76,7 +78,9 @@ runs:
           fi
         done
         echo "testStatus=$status" >> $GITHUB_OUTPUT
-        printf '<details><summary>%s<strong>Test Results</strong></summary>\n%s</details>' "$([ $status -eq 0 ] && echo ":rainbow:" || echo ":finnadie::x:")" "$(cat /tmp/foundry_test)" >> /tmp/content/test.txt
+        if [ $status -ne 0 ]; then
+          printf '<details><summary>:finnadie::x:<strong>Test Results</strong></summary>\n%s</details>' "$(cat /tmp/foundry_test)" >> /tmp/content/test.txt
+        fi
         exit 0
       env:
         FORGE_SNAPSHOT_CHECK: ${{ inputs.FORGE_SNAPSHOT_CHECK }}
