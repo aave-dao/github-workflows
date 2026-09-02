@@ -1,9 +1,6 @@
 name: Foundry setup
 description: A generalized foundry setup doing common things, like building and emitting a version.
 inputs:
-  ZKSYNC:
-    description: "If tests should use zksync profile"
-    default: "false"
   FOUNDRY_VERSION:
     description: "The Foundry version to install: stable, nightly, or a SemVer version such as v1.8.0 or v1.7.0"
     default: "stable"
@@ -16,16 +13,9 @@ runs:
       run: mkdir -p /tmp/content
 
     - name: Install Foundry
-      if: ${{ inputs.zksync != 'true' }}
       uses: foundry-rs/foundry-toolchain@908c540300062bd5a7e473851cdb4282204cee09 # v1.9.1
       with:
         version: ${{ inputs.FOUNDRY_VERSION }}
-
-    - name: Install Foundry zksync
-      if: ${{ inputs.zksync == 'true' }}
-      uses: bgd-labs/foundry-zksync-toolchain@f7fa458f4f0d94dfdeb1759e7842e3b8e1c97a8d
-      with:
-        version: nightly
 
     - name: Run Forge version
       shell: bash
