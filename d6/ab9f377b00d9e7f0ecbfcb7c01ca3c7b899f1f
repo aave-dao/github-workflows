@@ -1,0 +1,21 @@
+.github/actions/foundry-test/action.yml
+  s_52f3145304d99b::t_6033e60bf70029 29,33,48,69
+.github/workflows/_test-workflow.yml
+  s_52f3145304d99b::t_6033e60bf70029 46
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.0",
+  "base_commit_sha": "d6ab9f377b00d9e7f0ecbfcb7c01ca3c7b899f1f",
+  "prompts": {},
+  "sessions": {
+    "s_52f3145304d99b": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a0589d-7f21-75c1-b97e-ad5a9e700a66",
+        "model": "gpt-5.6-sol"
+      },
+      "human_author": "AlbertoCentonze <11707683+AlbertoCentonze@users.noreply.github.com>"
+    }
+  }
+}
