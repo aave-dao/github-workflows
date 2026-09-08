@@ -9,5 +9,7 @@ runs:
 
     - name: Prepare comment
       shell: bash
+      env:
+        REPORT: ${{ steps.gas.outputs.report }}
       run: |
-        printf '%s' "${{ steps.gas.outputs.report }}" > /tmp/content/gas.txt
+        printf '%s' "$REPORT" > /tmp/content/gas.txt

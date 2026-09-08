@@ -24,8 +24,10 @@ runs:
 
     - name: Prepare comment
       shell: bash
+      env:
+        REPORT: ${{ steps.lcov.outputs.report }}
       run: |
-        printf '%s' "${{ steps.lcov.outputs.report }}" > /tmp/content/lcov.txt
+        printf '%s' "$REPORT" > /tmp/content/lcov.txt
 
     - name: Move lcov to cache
       shell: bash
