@@ -14,9 +14,14 @@ runs:
         path: lcov
         check_artifacts: true
 
+    - name: Run coverage
+      shell: bash
+      run: forge coverage --fuzz-runs 1 --report lcov --no-match-coverage "(test|script|.t.sol|.s.sol|deployment|mock)"
+
     - uses: aave-dao/action-foundry-lcov@main
       id: lcov
       with:
+        COVERAGE_COMMAND: "false"
         # The path to the first contract to compare
         ROOT_REPORT_PATH: "lcov/lcov.info"
         # The path to the second contract to compare
