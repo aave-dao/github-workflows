@@ -17,7 +17,7 @@ name: `aave-dao/github-workflows/.github/actions/setup-node@main`
 
 `foundry-test` workflow:
 
-- installs foundry
+- installs Foundry v1.8.3
 - runs `forge build --sizes`
 - runs `forge test -vvv`
 - reports results in an automatically updated comment on the pr
@@ -39,7 +39,6 @@ jobs:
     uses: aave-dao/github-workflows/.github/workflows/foundry-test.yml@main
     with:
       mode: ALL # or CHANGED
-      foundryVersion: stable # or nightly/a SemVer version such as v1.8.0 or v1.7.0
     # to inherit all secrets
     secrets: inherit
     # to inherit specific secrets

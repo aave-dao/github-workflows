@@ -1,9 +1,5 @@
 name: Foundry setup
 description: A generalized foundry setup doing common things, like building and emitting a version.
-inputs:
-  FOUNDRY_VERSION:
-    description: "The Foundry version to install: stable, nightly, or a SemVer version such as v1.8.0 or v1.7.0"
-    default: "stable"
 
 runs:
   using: "composite"
@@ -15,7 +11,7 @@ runs:
     - name: Install Foundry
       uses: foundry-rs/foundry-toolchain@908c540300062bd5a7e473851cdb4282204cee09 # v1.9.1
       with:
-        version: ${{ inputs.FOUNDRY_VERSION }}
+        version: v1.8.3
 
     - name: Run Forge version
       shell: bash
