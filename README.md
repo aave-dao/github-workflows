@@ -23,6 +23,10 @@ name: `aave-dao/github-workflows/.github/actions/setup-node@main`
 - reports results in an automatically updated comment on the pr
 - caches fork snapshots for recurrent runs
 
+`foundryVersion` accepts an exact release (`vX.Y.Z`) at or above the pinned version,
+published at least 14 days ago. The pinned default is explicitly approved and exempt
+from the cooldown. Floating versions (`stable`, `nightly`, ranges) are rejected.
+
 You can use the workflow via:
 
 ```yml

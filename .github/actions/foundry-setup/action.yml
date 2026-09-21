@@ -1,5 +1,9 @@
 name: Foundry setup
 description: A generalized foundry setup doing common things, like building and emitting a version.
+inputs:
+  FOUNDRY_VERSION:
+    description: "Optional exact release (vX.Y.Z), at least the pinned baseline and published at least 14 days ago."
+    default: ""
 
 runs:
   using: "composite"
@@ -8,10 +12,18 @@ runs:
       shell: bash
       run: mkdir -p /tmp/content
 
+    - name: Validate Foundry version
+      id: foundry-version
+      shell: bash
+      env:
+        REQUESTED_FOUNDRY_VERSION: ${{ inputs.FOUNDRY_VERSION }}
+        GH_TOKEN: ${{ github.token }}
+      run: node "${{ github.action_path }}/validate-version.cjs"
+
     - name: Install Foundry
       uses: foundry-rs/foundry-toolchain@908c540300062bd5a7e473851cdb4282204cee09 # v1.9.1
       with:
-        version: v1.8.3
+        version: ${{ steps.foundry-version.outputs.version }}
 
     - name: Run Forge version
       shell: bash
