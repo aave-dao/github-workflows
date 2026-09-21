@@ -2,8 +2,8 @@ name: Foundry setup
 description: A generalized foundry setup doing common things, like building and emitting a version.
 inputs:
   FOUNDRY_VERSION:
-    description: "The Foundry version to install: stable, nightly, or a SemVer version such as v1.8.0 or v1.7.0"
-    default: "stable"
+    description: "Exact release (vX.Y.Z), at least the pinned baseline and published at least 7 days ago."
+    default: "v1.8.3"
 
 runs:
   using: "composite"
@@ -12,10 +12,18 @@ runs:
       shell: bash
       run: mkdir -p /tmp/content
 
+    - name: Validate Foundry version
+      id: foundry-version
+      shell: bash
+      env:
+        REQUESTED_FOUNDRY_VERSION: ${{ inputs.FOUNDRY_VERSION }}
+        GH_TOKEN: ${{ github.token }}
+      run: node "${{ github.action_path }}/validate-version.ts"
+
     - name: Install Foundry
       uses: foundry-rs/foundry-toolchain@908c540300062bd5a7e473851cdb4282204cee09 # v1.9.1
       with:
-        version: ${{ inputs.FOUNDRY_VERSION }}
+        version: ${{ steps.foundry-version.outputs.version }}
 
     - name: Run Forge version
       shell: bash

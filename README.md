@@ -17,11 +17,17 @@ name: `aave-dao/github-workflows/.github/actions/setup-node@main`
 
 `foundry-test` workflow:
 
-- installs foundry
+- installs Foundry v1.8.3
 - runs `forge build --sizes`
 - runs `forge test -vvv`
 - reports results in an automatically updated comment on the pr
 - caches fork snapshots for recurrent runs
+
+`foundryVersion` accepts an exact release (`vX.Y.Z`) at or above the pinned version,
+published at least 7 days ago. The default goes through the same checks.
+Floating versions (`stable`, `nightly`, ranges) are rejected.
+
+The setup action runs its TypeScript validator directly with Node.js 22.18+.
 
 You can use the workflow via:
 
@@ -39,7 +45,6 @@ jobs:
     uses: aave-dao/github-workflows/.github/workflows/foundry-test.yml@main
     with:
       mode: ALL # or CHANGED
-      foundryVersion: stable # or nightly/a SemVer version such as v1.8.0 or v1.7.0
     # to inherit all secrets
     secrets: inherit
     # to inherit specific secrets

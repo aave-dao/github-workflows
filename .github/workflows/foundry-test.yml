@@ -7,9 +7,9 @@ on:
         default: "ALL"
         type: "string"
       foundryVersion:
-        description: "The Foundry version to install: stable, nightly, or a SemVer version such as v1.8.0 or v1.7.0"
-        default: "stable"
-        type: "string"
+        description: "Exact release (vX.Y.Z), at least the pinned baseline and published at least 7 days ago."
+        default: "v1.8.3"
+        type: string
       compareGas:
         default: true
         type: boolean
