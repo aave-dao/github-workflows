@@ -1,0 +1,22 @@
+.github/actions/foundry-setup/validate-version.ts
+  s_52f3145304d99b::t_21b12e0db47522 1,46,52-61
+.github/actions/foundry-setup/validate-version.test.ts
+  s_52f3145304d99b::t_21b12e0db47522 3-4,65-73
+  s_52f3145304d99b::t_3a8a06c4c385de 74
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.4",
+  "base_commit_sha": "ccaf0372a7450fd9fc0ac6484c2fdd213e2d86ef",
+  "prompts": {},
+  "sessions": {
+    "s_52f3145304d99b": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a0589d-7f21-75c1-b97e-ad5a9e700a66",
+        "model": "gpt-6-astra"
+      },
+      "human_author": "AlbertoCentonze <11707683+AlbertoCentonze@users.noreply.github.com>"
+    }
+  }
+}
