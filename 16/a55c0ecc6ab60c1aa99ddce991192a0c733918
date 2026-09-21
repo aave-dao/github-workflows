@@ -1,0 +1,19 @@
+.github/actions/foundry-test/action.yml
+  s_52f3145304d99b::t_3b28503457c62f 48
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.4",
+  "base_commit_sha": "16a55c0ecc6ab60c1aa99ddce991192a0c733918",
+  "prompts": {},
+  "sessions": {
+    "s_52f3145304d99b": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a0589d-7f21-75c1-b97e-ad5a9e700a66",
+        "model": "unknown"
+      },
+      "human_author": "AlbertoCentonze <11707683+AlbertoCentonze@users.noreply.github.com>"
+    }
+  }
+}
