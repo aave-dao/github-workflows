@@ -1,5 +1,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
+import { spawnSync } from 'node:child_process';
+import { fileURLToPath } from 'node:url';
 import { BASELINE, COOLDOWN_MS, validateVersion, type Release } from './validate-version.ts';
 
 const now = Date.parse('2026-10-20T12:00:00Z');
@@ -59,4 +61,14 @@ test('API errors fail closed', async () => {
   await assert.rejects(validateVersion('v1.8.4', async () => {
     throw new Error('HTTP 403');
   }, now), /HTTP 403/);
+});
+
+test('direct execution validates input and exits unsuccessfully on rejection', () => {
+  const script = fileURLToPath(new URL('./validate-version.ts', import.meta.url));
+  const result = spawnSync(process.execPath, [script], {
+    env: { ...process.env, REQUESTED_FOUNDRY_VERSION: 'nightly' },
+    encoding: 'utf8',
+  });
+  assert.equal(result.status, 1);
+  assert.match(result.stderr, /exact stable release/);
 });

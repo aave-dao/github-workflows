@@ -1,5 +1,4 @@
-import { appendFileSync } from 'node:fs';
-import { pathToFileURL } from 'node:url';
+import { appendFile } from 'node:fs/promises';
 
 export const BASELINE = 'v1.8.3';
 export const COOLDOWN_MS = 7 * 24 * 60 * 60 * 1000;
@@ -44,21 +43,20 @@ async function fetchRelease(version: string): Promise<Release> {
       Accept: 'application/vnd.github+json',
       ...(process.env.GH_TOKEN ? { Authorization: `Bearer ${process.env.GH_TOKEN}` } : {}),
     },
-    signal: AbortSignal.timeout(30000),
+    signal: AbortSignal.timeout(30_000),
   });
   if (!response.ok) throw new Error(`Cannot verify Foundry release: HTTP ${response.status}.`);
   return await response.json() as Release;
 }
 
-if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
-  validateVersion(process.env.REQUESTED_FOUNDRY_VERSION, fetchRelease)
-    .then(version => {
-      const output = process.env.GITHUB_OUTPUT;
-      if (!output) throw new Error('GITHUB_OUTPUT is required.');
-      appendFileSync(output, `version=${version}\n`);
-    })
-    .catch(error => {
-      console.error(error.message);
-      process.exitCode = 1;
-    });
+if (import.meta.main) {
+  try {
+    const version = await validateVersion(process.env.REQUESTED_FOUNDRY_VERSION, fetchRelease);
+    const output = process.env.GITHUB_OUTPUT;
+    if (!output) throw new Error('GITHUB_OUTPUT is required.');
+    await appendFile(output, `version=${version}\n`);
+  } catch (error) {
+    console.error(error instanceof Error ? error.message : String(error));
+    process.exitCode = 1;
+  }
 }
