@@ -30,8 +30,8 @@ test('reject floating, malformed, prerelease and injectable input before fetchin
 });
 
 test('reject versions below baseline numerically', async () => {
-  for (const input of ['v1.8.0', 'v1.7.99', 'v0.99.99']) {
-    await assert.rejects(validateVersion(input, noFetch, now), /at least v1.8.1/);
+  for (const input of ['v1.8.2', 'v1.7.99', 'v0.99.99']) {
+    await assert.rejects(validateVersion(input, noFetch, now), /at least v1.8.3/);
   }
 });
 

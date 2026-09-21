@@ -1,6 +1,6 @@
 const { appendFileSync } = require('node:fs');
 
-const BASELINE = 'v1.8.1';
+const BASELINE = 'v1.8.3';
 const COOLDOWN_MS = 7 * 24 * 60 * 60 * 1000;
 
 async function validateVersion(requested, fetchRelease, now = Date.now()) {

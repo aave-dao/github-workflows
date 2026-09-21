@@ -3,7 +3,7 @@ description: A generalized foundry setup doing common things, like building and 
 inputs:
   FOUNDRY_VERSION:
     description: "Exact release (vX.Y.Z), at least the pinned baseline and published at least 7 days ago."
-    default: "v1.8.1"
+    default: "v1.8.3"
 
 runs:
   using: "composite"

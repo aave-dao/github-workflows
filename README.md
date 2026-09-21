@@ -17,7 +17,7 @@ name: `aave-dao/github-workflows/.github/actions/setup-node@main`
 
 `foundry-test` workflow:
 
-- installs Foundry v1.8.1
+- installs Foundry v1.8.3
 - runs `forge build --sizes`
 - runs `forge test -vvv`
 - reports results in an automatically updated comment on the pr
