@@ -1,10 +1,10 @@
 const { appendFileSync } = require('node:fs');
 
-const BASELINE = 'v1.8.3';
-const COOLDOWN_MS = 14 * 24 * 60 * 60 * 1000;
+const BASELINE = 'v1.8.1';
+const COOLDOWN_MS = 7 * 24 * 60 * 60 * 1000;
 
 async function validateVersion(requested, fetchRelease, now = Date.now()) {
-  const version = requested || BASELINE;
+  const version = requested;
   if (!/^v(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)$/.test(version)) {
     throw new Error('Foundry version must be an exact stable release: vX.Y.Z.');
   }
@@ -14,17 +14,14 @@ async function validateVersion(requested, fetchRelease, now = Date.now()) {
   if (different !== -1 && parts[different] < baseline[different]) {
     throw new Error(`Foundry version must be at least ${BASELINE}.`);
   }
-  // The reviewed baseline does not depend on release age or API availability.
-  if (version === BASELINE) return version;
-
   const release = await fetchRelease(version);
   if (release.tag_name !== version || release.draft !== false || release.prerelease !== false) {
-    throw new Error('Foundry override must identify a published stable release.');
+    throw new Error('Foundry version must identify a published stable release.');
   }
   const published = typeof release.published_at === 'string'
     ? Date.parse(release.published_at) : NaN;
   if (!Number.isFinite(published) || now - published < COOLDOWN_MS) {
-    throw new Error('Foundry override must have been published at least 14 days ago.');
+    throw new Error('Foundry version must have been published at least 7 days ago.');
   }
   return version;
 }

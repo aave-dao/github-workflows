@@ -2,8 +2,8 @@ name: Foundry setup
 description: A generalized foundry setup doing common things, like building and emitting a version.
 inputs:
   FOUNDRY_VERSION:
-    description: "Optional exact release (vX.Y.Z), at least the pinned baseline and published at least 14 days ago."
-    default: ""
+    description: "Exact release (vX.Y.Z), at least the pinned baseline and published at least 7 days ago."
+    default: "v1.8.1"
 
 runs:
   using: "composite"

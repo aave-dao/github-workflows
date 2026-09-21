@@ -17,15 +17,15 @@ name: `aave-dao/github-workflows/.github/actions/setup-node@main`
 
 `foundry-test` workflow:
 
-- installs Foundry v1.8.3
+- installs Foundry v1.8.1
 - runs `forge build --sizes`
 - runs `forge test -vvv`
 - reports results in an automatically updated comment on the pr
 - caches fork snapshots for recurrent runs
 
 `foundryVersion` accepts an exact release (`vX.Y.Z`) at or above the pinned version,
-published at least 14 days ago. The pinned default is explicitly approved and exempt
-from the cooldown. Floating versions (`stable`, `nightly`, ranges) are rejected.
+published at least 7 days ago. The default goes through the same checks.
+Floating versions (`stable`, `nightly`, ranges) are rejected.
 
 You can use the workflow via:
 
