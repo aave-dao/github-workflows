@@ -1,0 +1,21 @@
+README.md
+  s_52f3145304d99b::t_070d94ca4907a5 20
+.github/actions/foundry-setup/action.yml
+  s_52f3145304d99b::t_7ad0169709b697 14
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.4",
+  "base_commit_sha": "e97b5b15ce72af22ebbe06e9ddeed08bbdd4387e",
+  "prompts": {},
+  "sessions": {
+    "s_52f3145304d99b": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a0589d-7f21-75c1-b97e-ad5a9e700a66",
+        "model": "gpt-6-astra"
+      },
+      "human_author": null
+    }
+  }
+}
