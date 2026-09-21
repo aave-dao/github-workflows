@@ -27,6 +27,9 @@ name: `aave-dao/github-workflows/.github/actions/setup-node@main`
 published at least 7 days ago. The default goes through the same checks.
 Floating versions (`stable`, `nightly`, ranges) are rejected.
 
+The setup action runs its TypeScript validator directly with Node.js 22.18+.
+When calling the action directly, run it before selecting an older Node.js version.
+
 You can use the workflow via:
 
 ```yml

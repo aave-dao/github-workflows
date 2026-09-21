@@ -21,7 +21,7 @@ jobs:
           submodules: recursive
 
       - name: Test Foundry version policy
-        run: node --test .github/actions/foundry-setup/validate-version.test.cjs
+        run: node --test .github/actions/foundry-setup/validate-version.test.ts
 
       - uses: aave-dao/action-rpc-env@main
         with:

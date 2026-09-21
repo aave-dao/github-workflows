@@ -18,7 +18,7 @@ runs:
       env:
         REQUESTED_FOUNDRY_VERSION: ${{ inputs.FOUNDRY_VERSION }}
         GH_TOKEN: ${{ github.token }}
-      run: node "${{ github.action_path }}/validate-version.cjs"
+      run: node "${{ github.action_path }}/validate-version.ts"
 
     - name: Install Foundry
       uses: foundry-rs/foundry-toolchain@908c540300062bd5a7e473851cdb4282204cee09 # v1.9.1

@@ -1,9 +1,9 @@
-const { test } = require('node:test');
-const assert = require('node:assert/strict');
-const { BASELINE, COOLDOWN_MS, validateVersion } = require('./validate-version.cjs');
+import { test } from 'node:test';
+import assert from 'node:assert/strict';
+import { BASELINE, COOLDOWN_MS, validateVersion, type Release } from './validate-version.ts';
 
 const now = Date.parse('2026-10-20T12:00:00Z');
-const release = (version, overrides = {}) => ({
+const release = (version: string, overrides: Partial<Release> = {}): Release => ({
   tag_name: version,
   draft: false,
   prerelease: false,

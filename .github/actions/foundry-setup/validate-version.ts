@@ -1,11 +1,23 @@
-const { appendFileSync } = require('node:fs');
+import { appendFileSync } from 'node:fs';
+import { pathToFileURL } from 'node:url';
 
-const BASELINE = 'v1.8.3';
-const COOLDOWN_MS = 7 * 24 * 60 * 60 * 1000;
+export const BASELINE = 'v1.8.3';
+export const COOLDOWN_MS = 7 * 24 * 60 * 60 * 1000;
 
-async function validateVersion(requested, fetchRelease, now = Date.now()) {
+export type Release = {
+  tag_name?: string;
+  draft?: boolean;
+  prerelease?: boolean;
+  published_at?: string | null;
+};
+
+export async function validateVersion(
+  requested: string | undefined,
+  fetchRelease: (version: string) => Promise<Release>,
+  now = Date.now(),
+): Promise<string> {
   const version = requested;
-  if (!/^v(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)$/.test(version)) {
+  if (typeof version !== 'string' || !/^v(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)$/.test(version)) {
     throw new Error('Foundry version must be an exact stable release: vX.Y.Z.');
   }
   const parts = version.slice(1).split('.').map(BigInt);
@@ -26,7 +38,7 @@ async function validateVersion(requested, fetchRelease, now = Date.now()) {
   return version;
 }
 
-async function fetchRelease(version) {
+async function fetchRelease(version: string): Promise<Release> {
   const response = await fetch(`https://api.github.com/repos/foundry-rs/foundry/releases/tags/${version}`, {
     headers: {
       Accept: 'application/vnd.github+json',
@@ -35,16 +47,18 @@ async function fetchRelease(version) {
     signal: AbortSignal.timeout(30000),
   });
   if (!response.ok) throw new Error(`Cannot verify Foundry release: HTTP ${response.status}.`);
-  return response.json();
+  return await response.json() as Release;
 }
 
-if (require.main === module) {
+if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
   validateVersion(process.env.REQUESTED_FOUNDRY_VERSION, fetchRelease)
-    .then(version => appendFileSync(process.env.GITHUB_OUTPUT, `version=${version}\n`))
+    .then(version => {
+      const output = process.env.GITHUB_OUTPUT;
+      if (!output) throw new Error('GITHUB_OUTPUT is required.');
+      appendFileSync(output, `version=${version}\n`);
+    })
     .catch(error => {
       console.error(error.message);
       process.exitCode = 1;
     });
 }
-
-module.exports = { BASELINE, COOLDOWN_MS, validateVersion };
