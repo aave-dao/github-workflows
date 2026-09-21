@@ -1,0 +1,35 @@
+.github/actions/foundry-setup/action.yml
+  s_52f3145304d99b::t_5a835afd3e02b7 6
+.github/actions/foundry-setup/validate-version.cjs
+  s_3bcdd9e08edd69::t_990e88f2b9c54e 3
+.github/actions/foundry-setup/validate-version.test.cjs
+  s_3bcdd9e08edd69::t_8531475d8e4534 33-34
+.github/workflows/foundry-test.yml
+  s_52f3145304d99b::t_e27136b39502c0 11
+README.md
+  s_3bcdd9e08edd69::t_8f87a95672746f 20
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.4",
+  "base_commit_sha": "60bf3932d846b73b2a5d39e11ceff2b610867b3b",
+  "prompts": {},
+  "sessions": {
+    "s_3bcdd9e08edd69": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a0c420-279c-7740-9b7b-f379f4f87f0d",
+        "model": "unknown"
+      },
+      "human_author": "AlbertoCentonze <11707683+AlbertoCentonze@users.noreply.github.com>"
+    },
+    "s_52f3145304d99b": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a0589d-7f21-75c1-b97e-ad5a9e700a66",
+        "model": "unknown"
+      },
+      "human_author": "AlbertoCentonze <11707683+AlbertoCentonze@users.noreply.github.com>"
+    }
+  }
+}
