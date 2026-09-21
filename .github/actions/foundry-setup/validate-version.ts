@@ -49,14 +49,10 @@ async function fetchRelease(version: string): Promise<Release> {
   return await response.json() as Release;
 }
 
+// Tests import the validator; only direct execution should call GitHub and write outputs.
 if (import.meta.main) {
-  try {
-    const version = await validateVersion(process.env.REQUESTED_FOUNDRY_VERSION, fetchRelease);
-    const output = process.env.GITHUB_OUTPUT;
-    if (!output) throw new Error('GITHUB_OUTPUT is required.');
-    await appendFile(output, `version=${version}\n`);
-  } catch (error) {
-    console.error(error instanceof Error ? error.message : String(error));
-    process.exitCode = 1;
-  }
+  const version = await validateVersion(process.env.REQUESTED_FOUNDRY_VERSION, fetchRelease);
+  const output = process.env.GITHUB_OUTPUT;
+  if (!output) throw new Error('GITHUB_OUTPUT is required.');
+  await appendFile(output, `version=${version}\n`);
 }
