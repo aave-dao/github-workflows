@@ -8,6 +8,7 @@ runs:
       id: gas
 
     - name: Prepare comment
+      if: ${{ !contains(steps.gas.outputs.report, 'Seems like you are not measuring gas of any operations yet.') }}
       shell: bash
       run: |
         printf '%s' "${{ steps.gas.outputs.report }}" > /tmp/content/gas.txt
