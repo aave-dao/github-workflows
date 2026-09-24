@@ -13,10 +13,11 @@ jobs:
     name: Generate artifacts matrix
     runs-on: ubuntu-latest
     outputs:
-      matrix: ${{ steps.set-matrix.outputs.matrix }}
+      matrix: ${{ steps.set-matrix.outputs.matrix || '[]' }}
       pr_number: ${{ steps.set-matrix.outputs.pr_number }}
     steps:
       - name: Download artifacts
+        id: download
         uses: dawidd6/action-download-artifact@72aaadce3bc708349fc665eee3785cbb1b6e51d0 # v3.1.1
         with:
           run_id: ${{ github.event.workflow_run.id }}
@@ -24,8 +25,10 @@ jobs:
           name: content*
           name_is_regexp: true
           path: /tmp/content
+          if_no_artifact_found: warn
 
       - id: set-matrix
+        if: ${{ steps.download.outputs.found_artifact == 'true' }}
         run: |
           pr_number=$(find /tmp/content/* -maxdepth 2 -name 'pr_number.txt' -print -quit)
           if test -n "$pr_number"
