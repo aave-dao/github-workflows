@@ -1,0 +1,19 @@
+.github/actions/foundry-test/action.yml
+  s_11108a654a3e3e::t_984971b69f8f6c 52-54
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.4",
+  "base_commit_sha": "e80e061df1a4d4f1787db94f70b4de0b57dbbc27",
+  "prompts": {},
+  "sessions": {
+    "s_11108a654a3e3e": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "311de6cb-bf6b-425b-888b-91a42bccce46",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "AlbertoCentonze <11707683+AlbertoCentonze@users.noreply.github.com>"
+    }
+  }
+}
