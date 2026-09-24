@@ -49,6 +49,9 @@ runs:
         write_output_files: true
         files: |
           ${{ inputs.ZKSYNC == 'true' && 'zksync/**/*.t.sol' || '**/*.t.sol' }}
+        files_ignore: |
+          lib/**
+          ${{ inputs.ZKSYNC != 'true' && 'zksync/**' || '' }}
 
     - name: Run step if any *.md file(s) change
       if: ${{ inputs.MODE == 'CHANGED' && steps.changed-files.outputs.any_changed == 'true'}}
