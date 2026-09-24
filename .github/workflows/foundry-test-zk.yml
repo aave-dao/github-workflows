@@ -20,12 +20,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       ### Setup ###
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
           submodules: recursive
           token: ${{ github.token }}
 
-      - uses: aave-dao/action-rpc-env@5191193b0de7443bda94b6f42092c83e32464adc
+      - uses: aave-dao/action-rpc-env@main
         with:
           ALCHEMY_API_KEY: ${{ secrets.ALCHEMY_API_KEY }}
           QUICKNODE_TOKEN: ${{ secrets.QUICKNODE_TOKEN }}

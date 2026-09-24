@@ -17,7 +17,7 @@ jobs:
       pr_number: ${{ steps.set-matrix.outputs.pr_number }}
     steps:
       - name: Download artifacts
-        uses: dawidd6/action-download-artifact@72aaadce3bc708349fc665eee3785cbb1b6e51d0 # v3.1.1
+        uses: dawidd6/action-download-artifact@d63b86af1b34672e53c440b1b83979861906bad7 # v24
         with:
           run_id: ${{ github.event.workflow_run.id }}
           github_token: ${{ github.token }}
@@ -43,7 +43,7 @@ jobs:
         artifact: ${{ fromJson(needs.artifacts.outputs.matrix) }}
     steps:
       - name: Download artifacts
-        uses: dawidd6/action-download-artifact@72aaadce3bc708349fc665eee3785cbb1b6e51d0 # v3.1.1
+        uses: dawidd6/action-download-artifact@d63b86af1b34672e53c440b1b83979861906bad7 # v24
         with:
           run_id: ${{ github.event.workflow_run.id }}
           github_token: ${{ github.token }}
@@ -57,7 +57,7 @@ jobs:
           cat ${{ matrix.artifact }} >> /tmp/comment
 
       - name: Find Comment
-        uses: peter-evans/find-comment@v3
+        uses: peter-evans/find-comment@v4
         id: fc
         if: ${{ needs.artifacts.outputs.pr_number != null }}
         with:
@@ -66,7 +66,7 @@ jobs:
           body-includes: <!-- ${{ matrix.artifact }} -->
 
       - name: Create or update pr comment
-        uses: peter-evans/create-or-update-comment@v4
+        uses: peter-evans/create-or-update-comment@v5
         if: ${{ needs.artifacts.outputs.pr_number != null }}
         with:
           token: ${{ github.token }}
@@ -76,7 +76,7 @@ jobs:
           edit-mode: replace
 
       - name: Create or update commit comment
-        uses: peter-evans/commit-comment@v3
+        uses: peter-evans/commit-comment@v4
         if: ${{ needs.artifacts.outputs.pr_number == null }}
         with:
           token: ${{ github.token }}
