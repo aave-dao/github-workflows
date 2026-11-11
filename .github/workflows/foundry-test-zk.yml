@@ -9,10 +9,6 @@ on:
     secrets:
       ALCHEMY_API_KEY:
         required: false
-      QUICKNODE_TOKEN:
-        required: false
-      QUICKNODE_ENDPOINT_NAME:
-        required: false
 
 jobs:
   test:
@@ -28,8 +24,6 @@ jobs:
       - uses: aave-dao/action-rpc-env@5191193b0de7443bda94b6f42092c83e32464adc
         with:
           ALCHEMY_API_KEY: ${{ secrets.ALCHEMY_API_KEY }}
-          QUICKNODE_TOKEN: ${{ secrets.QUICKNODE_TOKEN }}
-          QUICKNODE_ENDPOINT_NAME: ${{ secrets.QUICKNODE_ENDPOINT_NAME }}
 
       - uses: aave-dao/github-workflows/.github/actions/setup-node@main
 
