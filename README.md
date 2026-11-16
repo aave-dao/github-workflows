@@ -40,6 +40,7 @@ jobs:
     with:
       mode: ALL # or CHANGED
       foundryVersion: stable # or nightly/a SemVer version such as v1.8.0 or v1.7.0
+      foundryProfile: default # the Foundry profile the tests run with
     # to inherit all secrets
     secrets: inherit
     # to inherit specific secrets
