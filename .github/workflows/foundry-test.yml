@@ -19,6 +19,10 @@ on:
       compareSize:
         default: true
         type: boolean
+      foundryProfile:
+        description: "The Foundry profile the tests run with"
+        default: "default"
+        type: "string"
     secrets:
       ALCHEMY_API_KEY:
         required: false
@@ -84,6 +88,7 @@ jobs:
         uses: aave-dao/github-workflows/.github/actions/foundry-test@main
         with:
           MODE: ${{ inputs.mode }}
+          FOUNDRY_PROFILE: ${{ inputs.foundryProfile }}
 
       ### Extended reports ###
       - name: Run Lcov report
